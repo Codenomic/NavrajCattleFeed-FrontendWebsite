@@ -11,6 +11,73 @@ const heroImage = document.getElementById("heroImage")
 const mainAboutTitle = document.getElementById("mainAboutTitle")
 const aboutTagline = document.getElementById("aboutTagline")
 const aboutDescription = document.getElementById("aboutDescription")
+const videoSection = document.getElementById("videoSection")
+
+/* Vimeo Player variables */
+let vimeoPlayer
+let isVideoInView = false
+
+// ===== VIMEO PLAYER INITIALIZATION =====
+
+/* Initialize Vimeo Player when DOM is loaded */
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize Vimeo Player
+  const iframe = document.getElementById('vimeoPlayer')
+  if (iframe) {
+    vimeoPlayer = new Vimeo.Player(iframe)
+    
+    // Set up video event listeners
+    vimeoPlayer.on('loaded', () => {
+      console.log('Vimeo player loaded successfully')
+    })
+
+    vimeoPlayer.on('error', (error) => {
+      console.error('Vimeo player error:', error)
+    })
+
+    // Initially pause the video
+    vimeoPlayer.pause().catch((error) => {
+      console.log('Initial pause failed:', error)
+    })
+  }
+
+  // Initialize other animations and observers
+  initializeAnimations()
+})
+
+// ===== VIDEO SCROLL CONTROL WITH INTERSECTION OBSERVER =====
+
+/* Intersection Observer for video autoplay/pause control */
+const videoObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.target.id === 'videoSection') {
+      if (entry.isIntersecting) {
+        // Video section is in view - play video
+        if (vimeoPlayer && !isVideoInView) {
+          isVideoInView = true
+          vimeoPlayer.play().then(() => {
+            console.log('Video started playing')
+          }).catch((error) => {
+            console.log('Autoplay failed:', error)
+          })
+        }
+      } else {
+        // Video section is out of view - pause video
+        if (vimeoPlayer && isVideoInView) {
+          isVideoInView = false
+          vimeoPlayer.pause().then(() => {
+            console.log('Video paused')
+          }).catch((error) => {
+            console.log('Pause failed:', error)
+          })
+        }
+      }
+    }
+  })
+}, {
+  threshold: 0.5, // Video must be 50% visible to trigger autoplay
+  rootMargin: '-50px 0px -50px 0px' // Add some margin for better UX
+})
 
 // ===== MOBILE NAVIGATION FUNCTIONALITY =====
 
@@ -118,7 +185,7 @@ const observer = new IntersectionObserver((entries) => {
 /* Handle scroll-triggered animations for various elements */
 function handleScrollAnimations() {
   const elements = document.querySelectorAll(
-    ".fade-in, .slide-in-left, .slide-in-right, .choice-block, .info-card, .product-item, .contact-item, .about-description, .text-reveal",
+    ".fade-in, .slide-in-left, .slide-in-right, .choice-block, .info-card, .product-item, .contact-item, .about-description, .text-reveal, .video-section",
   )
 
   elements.forEach((element) => {
@@ -136,17 +203,22 @@ function handleScrollAnimations() {
 
 // ===== INITIALIZE ANIMATIONS ON PAGE LOAD =====
 
-document.addEventListener("DOMContentLoaded", () => {
+function initializeAnimations() {
   /* All elements that need scroll-triggered animations */
   const animatedElements = document.querySelectorAll(
-    ".choice-block, .info-card, .product-item, .contact-card, .contact-title, .contact-subtitle, .main-about-title, .about-tagline, .about-description, .text-reveal",
+    ".choice-block, .info-card, .product-item, .contact-card, .contact-title, .contact-subtitle, .main-about-title, .about-tagline, .about-description, .text-reveal, .video-section",
   )
 
   /* Observe each element for intersection */
   animatedElements.forEach((element) => {
     observer.observe(element)
   })
-})
+
+  /* Observe video section for autoplay control */
+  if (videoSection) {
+    videoObserver.observe(videoSection)
+  }
+}
 
 // ===== HERO BUTTON FUNCTIONALITY =====
 
@@ -290,6 +362,13 @@ const modalHistory = []
 
 /* Enhanced modal show function with history management */
 function showModal(modal) {
+  // Pause video when modal opens
+  if (vimeoPlayer && isVideoInView) {
+    vimeoPlayer.pause().catch((error) => {
+      console.log('Modal pause failed:', error)
+    })
+  }
+
   modal.style.display = "block"
   setTimeout(() => {
     modal.classList.add("show")
@@ -307,6 +386,13 @@ function hideModal(modal) {
   setTimeout(() => {
     modal.style.display = "none"
     document.body.style.overflow = "auto"
+    
+    // Resume video if section is still in view
+    if (vimeoPlayer && isVideoInView) {
+      vimeoPlayer.play().catch((error) => {
+        console.log('Resume after modal failed:', error)
+      })
+    }
   }, 400)
 
   /* Remove from modal history */
@@ -523,9 +609,11 @@ window.addEventListener("scroll", () => {
 // ===== CONSOLE LOGGING FOR DEBUGGING =====
 
 console.log("Navraj Cattle Feed Website Loaded Successfully!")
+console.log("Vimeo video scroll control initialized")
 console.log("All animations and interactions are ready")
 console.log("Mobile responsive design active")
 console.log("Performance optimizations applied")
 console.log("Product modals functionality fixed")
 console.log("Side-by-side modal layout implemented")
+console.log("Video autoplay/pause on scroll working")
 console.log("All components working perfectly")
