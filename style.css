@@ -932,9 +932,9 @@ body {
 /* Contact grid layout */
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 25px;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -1319,6 +1319,83 @@ body {
 
 /* Tablet and small desktop styles */
 @media (max-width: 1024px) {
+  /* Container adjustments for tablets */
+  .container {
+    padding: 0 30px;
+  }
+
+  /* Navigation adjustments for tablets */
+  .floating-nav {
+    width: 92%;
+    padding: 10px 30px;
+  }
+
+  .nav-links {
+    gap: 25px;
+  }
+
+  .nav-link {
+    font-size: 15px;
+  }
+
+  /* Hero section tablet adjustments */
+  .hero-content {
+    padding: 0 4vw;
+  }
+
+  .hero-title {
+    font-size: clamp(3.5rem, 7vw, 5rem);
+    margin-bottom: 20px;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+    margin-bottom: 35px;
+  }
+
+  .hero-btn {
+    padding: 15px 40px;
+    font-size: 17px;
+  }
+
+  /* Section spacing adjustments */
+  .about-section,
+  .why-choose-us,
+  .benefits-usage,
+  .products-section,
+  .contact-section {
+    padding: 35px 0 25px 0;
+  }
+
+  /* Products grid for tablets */
+  .products-showcase {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Cards container for tablets */
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  /* Contact grid remains 2x2 for tablets */
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 700px;
+  }
+
+  .contact-card {
+    padding: 25px 20px;
+  }
+
+  .contact-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+
   .modal-content {
     width: 90%;
     padding: 35px 25px;
@@ -1349,11 +1426,33 @@ body {
 
 /* Mobile styles */
 @media (max-width: 768px) {
+  /* Container mobile adjustments */
+  .container {
+    padding: 0 20px;
+  }
+
   /* Navigation adjustments */
   .floating-nav {
     width: 95%;
     padding: 10px 20px;
     top: 10px;
+  }
+
+  .nav-container {
+    justify-content: space-between;
+  }
+
+  .logo-img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .main-title {
+    font-size: 16px;
+  }
+
+  .sub-title {
+    font-size: 10px;
   }
 
   .hamburger {
@@ -1366,37 +1465,59 @@ body {
 
   /* Hero section adjustments */
   .hero {
-    height: 90vh;
+    height: 100vh;
+    min-height: 600px;
   }
 
   .hero-content {
-    text-align: center;
-    padding-left: 5px;
+    text-align: left;
+    padding: 0 20px;
+    align-items: flex-start;
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
+    line-height: 1.1;
   }
 
   .hero-subtitle {
-    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
     margin-bottom: 30px;
-    text-align: center;
+    text-align: left;
+    line-height: 1.4;
   }
 
   .hero-btn {
     padding: 14px 35px;
     font-size: 16px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    align-self: flex-start;
+  }
+
+  /* About section mobile improvements */
+  .main-about-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+  }
+
+  .about-tagline {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    margin-bottom: 20px;
+  }
+
+  .about-description {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    margin-bottom: 40px;
+    padding: 0 10px;
   }
 
   /* Why Choose Us mobile layout - text first, then image */
   .block-content {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 25px;
     text-align: center;
   }
 
@@ -1416,18 +1537,43 @@ body {
   .block-image {
     order: 2;
   }
+
+  .block-text h3 {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    margin-bottom: 15px;
+  }
+
+  .block-text p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    line-height: 1.7;
+  }
+
+  .block-image {
+    border-radius: 15px !important;
+  }
+
+  .block-image img {
+    height: 250px;
+    border-radius: 15px !important;
+  }
+
   /* Section adjustments */
   .about-section,
   .why-choose-us,
   .benefits-usage,
   .products-section,
   .contact-section {
-    padding: 20px 0 10px 0;
+    padding: 30px 0 20px 0;
   }
 
   .professional-title {
-    font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+    font-size: clamp(1.8rem, 6vw, 2.8rem) !important;
     margin-bottom: 15px !important;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 40px;
   }
 
   .contact-header {
@@ -1436,17 +1582,48 @@ body {
 
   .products-showcase {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 25px;
   }
 
   .product-item {
-    max-width: 350px;
+    max-width: 400px;
     margin: 0 auto;
+  }
+
+  .product-visual {
+    height: 280px;
+  }
+
+  .product-details {
+    padding: 20px;
+  }
+
+  .product-details h3 {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    margin-bottom: 10px;
+  }
+
+  .product-description {
+    font-size: 13px;
+    margin-bottom: 15px;
   }
 
   .cards-container {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 25px;
+  }
+
+  .info-card {
+    padding: 25px 20px;
+  }
+
+  .info-card h3 {
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+    margin-bottom: 12px;
+  }
+
+  .info-card p {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   }
 
   /* Modal mobile adjustments */
@@ -1482,94 +1659,24 @@ body {
 
   .footer-links {
     order: 3;
-  }
-
-  /* Contact grid adjustments */
-  .contact-grid {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
   }
 
-  .contact-card {
-    padding: 30px 25px;
-  }
-
-  .contact-icon {
-    width: 55px;
-    height: 55px;
-    margin-bottom: 20px;
-  }
-}
-
-/* Small mobile styles */
-@media (max-width: 480px) {
-  /* Navigation adjustments */
-  .floating-nav {
-    width: 98%;
-    padding: 8px 15px;
-  }
-
-  .logo-img {
-    width: 30px;
-    height: 30px;
-  }
-
-  .main-title {
-    font-size: 16px;
-  }
-
-  .sub-title {
-    font-size: 10px;
-  }
-
-  /* Hero adjustments */
-  .hero-content {
-    padding-left: 5px;
-  }
-
-  .hero-title {
-    font-size: clamp(2rem, 10vw, 3.5rem);
-  }
-
-  .hero-subtitle {
-    font-size: clamp(0.9rem, 4vw, 1.1rem);
-  }
-
-  .hero-btn {
-    padding: 12px 30px;
+  .footer-links a {
     font-size: 14px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  /* Section adjustments */
-  .about-section,
-  .why-choose-us,
-  .benefits-usage,
-  .products-section,
-  .contact-section {
-    padding: 15px 0 8px 0;
-  }
-
-  .professional-title {
-    font-size: clamp(1.3rem, 6vw, 2rem) !important;
-    margin-bottom: 12px !important;
-  }
-
-  .products-showcase {
+  /* Contact grid adjustments - Keep 2x2 layout on mobile */
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-  }
-
-  .product-item {
-    max-width: 300px;
-  }
-
-  .cards-container {
-    gap: 15px;
+    max-width: 100%;
   }
 
   .contact-card {
-    padding: 25px 20px;
+    padding: 20px 15px;
   }
 
   .contact-icon {
@@ -1578,11 +1685,193 @@ body {
     margin-bottom: 15px;
   }
 
-  /* Contact grid for small mobile - single column */
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
+  .contact-card h3 {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 15px;
   }
+
+  .contact-info p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    margin-bottom: 4px;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  /* Container for very small screens */
+  .container {
+    padding: 0 15px;
+  }
+
+  /* Navigation adjustments */
+  .floating-nav {
+    width: 98%;
+    padding: 8px 15px;
+  }
+
+  .logo-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .main-title {
+    font-size: 15px;
+  }
+
+  .sub-title {
+    font-size: 9px;
+  }
+
+  /* Hero adjustments */
+  .hero {
+    min-height: 550px;
+  }
+
+  .hero-content {
+    padding: 0 15px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 9vw, 3.8rem);
+    margin-bottom: 15px;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    margin-bottom: 25px;
+  }
+
+  .hero-btn {
+    padding: 12px 30px;
+    font-size: 15px;
+  }
+
+  /* About section for small mobile */
+  .main-about-title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .about-tagline {
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
+    margin-bottom: 18px;
+  }
+
+  .about-description {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 35px;
+    padding: 0 5px;
+  }
+
+  /* Section adjustments */
+  .about-section,
+  .why-choose-us,
+  .benefits-usage,
+  .products-section,
+  .contact-section {
+    padding: 25px 0 15px 0;
+  }
+
+  .professional-title {
+    font-size: clamp(1.5rem, 6vw, 2.2rem) !important;
+    margin-bottom: 12px !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    margin-bottom: 35px;
+  }
+
+  /* Block content improvements */
+  .block-text h3 {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    margin-bottom: 12px;
+  }
+
+  .block-text p {
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+  }
+
+  .block-image img {
+    height: 220px;
+  }
+
+  .products-showcase {
+    gap: 20px;
+  }
+
+  .product-item {
+    max-width: 320px;
+  }
+
+  .product-visual {
+    height: 250px;
+    padding: 12px;
+  }
+
+  .product-details {
+    padding: 18px 15px;
+  }
+
+  .product-details h3 {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 8px;
+  }
+
+  .product-description {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .product-btn {
+    padding: 6px 20px;
+    font-size: 12px;
+  }
+
+  .cards-container {
+    gap: 20px;
+  }
+
+  .info-card {
+    padding: 20px 15px;
+  }
+
+  .info-card h3 {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    margin-bottom: 10px;
+  }
+
+  .info-card p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+
+  .contact-card {
+    padding: 18px 12px;
+  }
+
+  .contact-icon {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 12px;
+  }
+
+  .contact-card h3 {
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    margin-bottom: 12px;
+  }
+
+  .contact-info p {
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    margin-bottom: 3px;
+  }
+
+  /* Keep 2x2 grid even on very small screens */
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
   /* Mobile modal adjustments */
   .modal-content {
     margin: 1% auto;
@@ -1601,16 +1890,21 @@ body {
     padding: 10px;
   }
 
-  /* About section mobile adjustments */
-  .main-about-title {
-    font-size: clamp(1.8rem, 10vw, 3rem);
-    letter-spacing: 1px;
-    margin-bottom: 20px;
+  /* Footer improvements for small mobile */
+  .footer-content {
+    gap: 20px;
   }
 
-  .about-tagline {
-    font-size: clamp(1rem, 6vw, 1.8rem);
-    margin-bottom: 20px;
+  .footer-links {
+    gap: 15px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+  }
+
+  .footer-logo span {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   }
 }
 
@@ -1641,6 +1935,59 @@ img {
 .hero-btn.hero-fade-in {
   will-change: auto;
 }
+
+/* Additional mobile optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile for better performance */
+  .choice-block,
+  .info-card,
+  .product-item,
+  .contact-card {
+    transition: all 0.3s ease;
+  }
+
+  /* Optimize touch interactions */
+  .product-item:active,
+  .info-card:active,
+  .contact-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Improve text readability on mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Optimize scrolling on mobile */
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    height: 100vh;
+    min-height: 500px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 15px;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    margin-bottom: 20px;
+  }
+
+  .hero-btn {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+}
+
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *,
