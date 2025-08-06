@@ -277,7 +277,9 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: left center; /* Adjust focus toward left side */
-  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: auto;
 }
 
 /* Hero overlay for text readability */
@@ -930,7 +932,7 @@ body {
 /* Contact grid layout */
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   max-width: 1200px;
   margin: 0 auto;
@@ -1391,6 +1393,29 @@ body {
     margin-right: auto;
   }
 
+  /* Why Choose Us mobile layout - text first, then image */
+  .block-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .reverse .block-content {
+    direction: ltr;
+  }
+
+  .reverse .block-text {
+    direction: ltr;
+  }
+
+  /* Ensure text comes first on mobile */
+  .block-text {
+    order: 1;
+  }
+
+  .block-image {
+    order: 2;
+  }
   /* Section adjustments */
   .about-section,
   .why-choose-us,
@@ -1461,7 +1486,7 @@ body {
 
   /* Contact grid adjustments */
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
@@ -1553,6 +1578,11 @@ body {
     margin-bottom: 15px;
   }
 
+  /* Contact grid for small mobile - single column */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
   /* Mobile modal adjustments */
   .modal-content {
     margin: 1% auto;
@@ -1593,8 +1623,24 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  /* Performance optimizations for images */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: auto;
 }
 
+/* Optimize animations for better performance */
+.hero-title,
+.hero-subtitle,
+.hero-btn {
+  will-change: transform, opacity;
+}
+
+.hero-title.hero-fade-in,
+.hero-subtitle.hero-fade-in,
+.hero-btn.hero-fade-in {
+  will-change: auto;
+}
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *,
