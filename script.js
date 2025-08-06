@@ -428,16 +428,17 @@ window.addEventListener("load", () => {
   /* Initialize scroll-triggered animations */
   handleScrollAnimations()
 
-  /* Preload critical images for better performance */
-  const criticalImages = [
-    "img/photorealistic-view-cow-grazing-nature-outdoors.jpg",
-    "img/output-onlinepngtools (8).png"
-  ]
-
-  criticalImages.forEach((src) => {
-    const img = new Image()
-    img.src = src
-  })
+  /* Optimize hero image loading */
+  const heroImg = document.getElementById('heroImage')
+  if (heroImg) {
+    heroImg.style.opacity = '1'
+    heroImg.style.transform = 'translateZ(0)'
+    if (!heroImg.complete) {
+      heroImg.addEventListener('load', () => {
+        heroImg.style.opacity = '1'
+      })
+    }
+  }
 })
 
 // ===== WINDOW RESIZE HANDLER =====
